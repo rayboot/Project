@@ -42,7 +42,7 @@ public class MineFragment extends BaseFragment {
      * @return A new instance of fragment MineFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MineFragment newInstance(String param1, String param2) {
+    public static MineFragment newInstance(String param1) {
         MineFragment fragment = new MineFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);

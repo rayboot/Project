@@ -12,6 +12,8 @@ import android.widget.FrameLayout;
 import com.github.rayboot.project.R;
 import com.github.rayboot.project.activities.base.BaseAppCompatActivity;
 import com.github.rayboot.project.fragments.HomeFragment;
+import com.github.rayboot.project.fragments.MineFragment;
+import com.github.rayboot.project.fragments.MsgFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -39,10 +41,10 @@ public class TabMainActivity extends BaseAppCompatActivity {
                 showContent(HomeFragment.newInstance("首页"));
                 break;
             case R.id.tab2:
-                showContent(HomeFragment.newInstance("消息"));
+                showContent(MsgFragment.newInstance("消息"));
                 break;
             case R.id.tab3:
-                showContent(HomeFragment.newInstance("我的"));
+                showContent(MineFragment.newInstance("我的"));
                 break;
         }
     }
