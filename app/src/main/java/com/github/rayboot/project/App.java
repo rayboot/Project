@@ -2,6 +2,7 @@ package com.github.rayboot.project;
 
 import android.app.Application;
 
+import com.google.gson.Gson;
 import com.raizlabs.android.dbflow.config.FlowManager;
 import com.tumblr.remember.Remember;
 import com.umeng.analytics.AnalyticsConfig;
