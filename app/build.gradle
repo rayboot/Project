@@ -45,5 +45,6 @@ dependencies {
     compile 'com.raizlabs.android:DBFlow-Core:2.2.1'
     compile 'com.raizlabs.android:DBFlow:2.2.1'
     compile 'com.jakewharton.rxbinding:rxbinding:0.3.0'
-    compile 'com.android.support:support-v4:23.1.1'
+    compile 'com.squareup.okhttp:okhttp:2.6.0'
+    compile 'com.squareup.okhttp:okhttp-urlconnection:2.6.0'
 }
