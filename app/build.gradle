@@ -44,6 +44,8 @@ dependencies {
     compile 'com.tumblr:remember:1.0.0'
     compile 'com.raizlabs.android:DBFlow-Core:2.2.1'
     compile 'com.raizlabs.android:DBFlow:2.2.1'
+    compile 'io.reactivex:rxandroid:1.0.1'
+    compile 'io.reactivex:rxjava:1.0.16'
     compile 'com.jakewharton.rxbinding:rxbinding:0.3.0'
     compile 'com.squareup.okhttp:okhttp:2.6.0'
     compile 'com.squareup.okhttp:okhttp-urlconnection:2.6.0'
