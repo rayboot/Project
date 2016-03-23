@@ -7,8 +7,9 @@ import com.github.rayboot.project.activities.base.BaseAppCompatActivity;
 import com.github.rayboot.project.api.services.ApiService;
 import com.github.rayboot.project.managers.listeners.IEventBus;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.ButterKnife;
-import de.greenrobot.event.EventBus;
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 

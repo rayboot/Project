@@ -9,7 +9,8 @@ import com.github.rayboot.project.api.services.ApiService;
 import com.github.rayboot.project.managers.listeners.IEventBus;
 import com.umeng.analytics.MobclickAgent;
 
-import de.greenrobot.event.EventBus;
+import org.greenrobot.eventbus.EventBus;
+
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
