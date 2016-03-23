@@ -12,4 +12,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="tag_index">传递下标</string>
+    <string name="tag_obj">传递对象</string>
+    <string name="tag_ex">传递扩展信息</string>
 </resources>

@@ -40,6 +40,10 @@
             android:value="Channel ID" />
         <!-- 友盟设置 -->
 
+        <meta-data
+            android:name="com.github.rayboot.project.utils.glide.TFGlideModule"
+            android:value="GlideModule" />
+
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/app_name" />

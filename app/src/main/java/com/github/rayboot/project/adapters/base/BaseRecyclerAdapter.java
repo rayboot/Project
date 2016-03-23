@@ -24,8 +24,8 @@ import java.util.List;
  * @TODO
  */
 public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private static final int HEADER_VIEW_TYPE = -1000;
-    private static final int FOOTER_VIEW_TYPE = -2000;
+    private static final int HEADER_VIEW_TYPE = -1000;// [-1000 ,- 0)代表的是header
+    private static final int FOOTER_VIEW_TYPE = -2000;//[-2000, -1000)代表的是footer
     private final List<View> mHeaders = new ArrayList<>();
     private final List<View> mFooters = new ArrayList<>();
     public Context mContext;
@@ -43,11 +43,6 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
         this.mContext = mContext;
         this.listData = listData;
         mLayoutInflater = LayoutInflater.from(mContext);
-        progView = new PullUpFooter(mContext);
-        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        progView.setLayoutParams(layoutParams);
-        progView.setVisibility(View.GONE);
-        addFooter(progView);
     }
 
     public List<T> getListData() {
@@ -71,11 +66,11 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
         if (position < mHeaders.size()) {
             return HEADER_VIEW_TYPE + position;
 
-        } else if (position < (mHeaders.size() + listData.size())) {
+        } else if (position < (mHeaders.size() + getCount())) {
             return getItemType(position - mHeaders.size());
 
         } else {
-            return FOOTER_VIEW_TYPE + position - mHeaders.size() - listData.size();
+            return FOOTER_VIEW_TYPE + position - mHeaders.size() - getCount();
         }
     }
 
@@ -103,7 +98,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
         if (position < mHeaders.size()) {
             // Headers don't need anything special
 
-        } else if (position < mHeaders.size() + listData.size()) {
+        } else if (position < mHeaders.size() + getCount()) {
             // This is a real position, not a header or footer. Bind it.
             bindData(viewHolder, position - mHeaders.size());
 
@@ -127,7 +122,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
 
     @Override
     public int getItemCount() {
-        return mHeaders.size() + listData.size() + mFooters.size();
+        return mHeaders.size() + getCount() + mFooters.size();
     }
 
     public int getCount() {
@@ -229,8 +224,20 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<Recycl
     }
 
     public void setProgVisibility(boolean visibility) {
-        if (progView != null) {
-            progView.setVisibility(visibility ? View.VISIBLE : View.GONE);
+
+        if (progView == null) {
+            progView = new PullUpFooter(mContext);
+            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            progView.setLayoutParams(layoutParams);
+        }
+
+        progView.setVisibility(visibility ? View.VISIBLE : View.GONE);
+        if (visibility) {
+            if (!mFooters.contains(progView)) {
+                addFooter(progView);
+            }
+        } else {
+            removeFooter(progView);
         }
     }
 }

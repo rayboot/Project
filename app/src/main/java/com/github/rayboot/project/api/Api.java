@@ -30,6 +30,7 @@ public class Api {
             return chain.proceed(req.build());
         });
 
+
         if (BuildConfig.DEBUG) {
             HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
