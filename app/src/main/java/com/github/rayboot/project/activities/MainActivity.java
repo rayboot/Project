@@ -18,10 +18,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.content_recycler_view)
-    RecyclerView contentRecyclerView;
-    @Bind(R.id.swipe_refresh_layout)
-    SwipeRefreshLayout swipeRefreshLayout;
+    @Bind(R.id.rv_content)
+    RecyclerView rvContent;
+    @Bind(R.id.srl_refresh_layout)
+    SwipeRefreshLayout srlRefreshLayout;
 
     public static void open(Context context) {
         context.startActivity(new Intent(context, MainActivity.class));
@@ -36,6 +36,6 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        contentRecyclerView.setLayoutManager(layoutManager);
+        rvContent.setLayoutManager(layoutManager);
     }
 }
