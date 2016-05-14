@@ -19,9 +19,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class TabMainActivity extends BaseAppCompatActivity {
-    private static final int TAB1 = 0;
-    private static final int TAB2 = 1;
-    private static final int TAB3 = 2;
     @Bind(R.id.container)
     FrameLayout container;
     private BaseFragment currentFragment = null;
@@ -38,27 +35,16 @@ public class TabMainActivity extends BaseAppCompatActivity {
     }
 
     public void clickTab(View view) {
-
-        switch (view.getId()) {
-            case R.id.tab1:
-                showContent(TAB1);
-                break;
-            case R.id.tab2:
-                showContent(TAB2);
-                break;
-            case R.id.tab3:
-                showContent(TAB3);
-                break;
-        }
+        showContent(view.getId());
     }
 
     public BaseFragment getFragment(int navType) {
         switch (navType) {
-            case TAB1:
+            case R.id.tab1:
                 return HomeFragment.newInstance("首页");
-            case TAB2:
+            case R.id.tab2:
                 return MsgFragment.newInstance("消息");
-            case TAB3:
+            case R.id.tab3:
                 return MineFragment.newInstance("我的");
         }
         return null;
