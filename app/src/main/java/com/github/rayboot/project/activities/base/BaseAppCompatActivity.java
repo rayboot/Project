@@ -77,10 +77,6 @@ public class BaseAppCompatActivity extends AppCompatActivity {
     }
 
     public void addSubscription(Subscription s) {
-        if (this.mCompositeSubscription == null) {
-            this.mCompositeSubscription = new CompositeSubscription();
-        }
-
-        this.mCompositeSubscription.add(s);
+        getCompositeSubscription().add(s);
     }
 }

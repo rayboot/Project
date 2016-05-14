@@ -13,7 +13,7 @@ import com.github.rayboot.project.utils.ptr.TFPTRRecyclerViewHelper;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class BaseRecyclerViewActivity extends AppCompatActivity {
+public class BaseRecyclerViewActivity extends BaseAppCompatActivity {
 
 
 

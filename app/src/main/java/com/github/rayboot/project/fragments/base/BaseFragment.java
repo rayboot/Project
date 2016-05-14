@@ -20,6 +20,7 @@ import rx.subscriptions.CompositeSubscription;
 public class BaseFragment extends Fragment {
     protected final String TAG = this.getClass().getSimpleName();
     public static final ApiService apiService = BaseAppCompatActivity.apiService;
+    private CompositeSubscription mCompositeSubscription;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,11 +34,8 @@ public class BaseFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
-        if (getActivity() instanceof BaseAppCompatActivity) {
-            CompositeSubscription subscription = ((BaseAppCompatActivity) getActivity()).getCompositeSubscription();
-            if (subscription != null) {
-                subscription.unsubscribe();
-            }
+        if (this.mCompositeSubscription != null) {
+            this.mCompositeSubscription.unsubscribe();
         }
     }
 
@@ -49,9 +47,16 @@ public class BaseFragment extends Fragment {
         }
     }
 
-    public void addSubscription(Subscription s) {
-        if (getActivity() instanceof BaseAppCompatActivity) {
-            ((BaseAppCompatActivity) getActivity()).addSubscription(s);
+    public CompositeSubscription getCompositeSubscription() {
+        if (this.mCompositeSubscription == null) {
+            this.mCompositeSubscription = new CompositeSubscription();
         }
+
+        return this.mCompositeSubscription;
+    }
+
+
+    public void addSubscription(Subscription s) {
+        getCompositeSubscription().add(s);
     }
 }
