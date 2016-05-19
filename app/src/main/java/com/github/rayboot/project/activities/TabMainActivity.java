@@ -22,6 +22,7 @@ public class TabMainActivity extends BaseAppCompatActivity {
     @Bind(R.id.container)
     FrameLayout container;
     private BaseFragment currentFragment = null;
+    private int curFragmentID = 0;
 
     public static void open(Context context) {
         context.startActivity(new Intent(context, TabMainActivity.class));
@@ -52,6 +53,10 @@ public class TabMainActivity extends BaseAppCompatActivity {
 
 
     public void showContent(int navType) {
+        if (curFragmentID != 0 && curFragmentID == navType) {
+            return;
+        }
+        invalidateOptionsMenu();
 
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
@@ -59,19 +64,17 @@ public class TabMainActivity extends BaseAppCompatActivity {
         if (fragment == null) {
             fragment = getFragment(navType);
         }
-        if (currentFragment != null && currentFragment.equals(fragment)) {
-            return;
+
+        if (curFragmentID != 0) {
+            ft.hide(fm.findFragmentByTag(curFragmentID + ""));
         }
 
-        invalidateOptionsMenu();
-        if (currentFragment != null) {
-            ft.hide(currentFragment);
-        }
         if (fragment.isAdded()) {
             ft.show(fragment);
         } else {
             ft.add(R.id.container, fragment, navType + "");
         }
         ft.commitAllowingStateLoss();
+        curFragmentID = navType;
     }
 }

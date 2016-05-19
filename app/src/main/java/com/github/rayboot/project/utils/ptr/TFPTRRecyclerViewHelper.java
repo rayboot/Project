@@ -5,7 +5,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.github.rayboot.project.R;
 import com.github.rayboot.project.adapters.base.BaseRecyclerAdapter;
 
 
@@ -76,7 +75,7 @@ public class TFPTRRecyclerViewHelper {
 //        mRefreshLayout.setColorSchemeResources(R.color.primaryColor, R.color.my_1, R.color.my_2, R.color.my_3);
         mRefreshLayout.setOnRefreshListener(() -> {
             if (refreshMode == Mode.BOTH || refreshMode == Mode.PULL_FORM_START) {
-                tfPtrListener.onTFPullDownToRefresh(mRecyclerView);
+                if (tfPtrListener != null) tfPtrListener.onTFPullDownToRefresh(mRecyclerView);
             }
         });
 
@@ -113,9 +112,9 @@ public class TFPTRRecyclerViewHelper {
                     lastVisibleItem = ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
                     firstVisibleItem = ((LinearLayoutManager) layoutManager).findFirstVisibleItemPosition();
                     if (dy > 0) {
-                        tfPtrListener.onScrollUp(firstVisibleItem);
+                        if (tfPtrListener != null) tfPtrListener.onScrollUp(firstVisibleItem);
                     } else {
-                        tfPtrListener.onScrollDown(firstVisibleItem);
+                        if (tfPtrListener != null) tfPtrListener.onScrollDown(firstVisibleItem);
                     }
                 }
             }
@@ -125,7 +124,7 @@ public class TFPTRRecyclerViewHelper {
     public void doLoadMore() {
         isLoad = true;
         if (refreshMode == Mode.BOTH || refreshMode == Mode.PULL_FROM_END) {
-            tfPtrListener.onTFPullUpToRefresh(mRecyclerView);
+            if (tfPtrListener != null) tfPtrListener.onTFPullUpToRefresh(mRecyclerView);
             setProgVisibility(true);
         }
     }
